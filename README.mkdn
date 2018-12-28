@@ -1,16 +1,4 @@
 
-Getting started
----------------
-
-To initialize your local repository, use a command like this:
-```
-repo init -u git://github.com/wdtwdev/android.git -b lineage-15.1
-```
-Then to sync up:
-```
-repo sync
-```
-
 How to build:
 -------------
 
@@ -25,7 +13,7 @@ sudo apt-get install kpartx python-mako
 3. Initialize repo:
 
 ```
-repo init -u git://github.com/LineageOS/android.git -b lineage-15.1
+repo init -u git://github.com/wdtwdev/android.git -b lineage-15.1
 curl --create-dirs -L -o .repo/local_manifests/manifest_brcm_rpi3.xml -O -L https://raw.githubusercontent.com/lineage-rpi/android_local_manifest/lineage-15.1/manifest_brcm_rpi3.xml
 repo sync
 ```
