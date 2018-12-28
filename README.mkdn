@@ -30,14 +30,7 @@ curl --create-dirs -L -o .repo/local_manifests/manifest_brcm_rpi3.xml -O -L http
 repo sync
 ```
 
-4. Apply [patches](https://github.com/lineage-rpi/android_local_manifest/tree/lineage-15.1/patches):
-
-```
-cd path/to/project
-git am patchname.patch
-```
-
-5. Compile:
+4. Compile:
 
 ```
 . build/envsetup.sh
@@ -45,6 +38,9 @@ lunch lineage_rpi3-userdebug
 mka kernel ramdisk systemimage vendorimage
 ```
 
-6. Create writable image:
+5. Create writable image:
 
+```
+cd device/brcm/rpi3
+sudo ./mkimg.sh
 ```
