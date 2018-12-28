@@ -4,34 +4,49 @@ LineageOS
 Getting started
 ---------------
 
-To get started with Android/LineageOS, you'll need to get
-familiar with [Repo](https://source.android.com/source/using-repo.html) and [Version Control with Git](https://source.android.com/source/version-control.html).
-
-To initialize your local repository using the LineageOS trees, use a command like this:
+To initialize your local repository, use a command like this:
 ```
-repo init -u git://github.com/LineageOS/android.git -b lineage-15.1
+repo init -u git://github.com/wdtwdev/android.git -b lineage-15.1
 ```
 Then to sync up:
 ```
 repo sync
 ```
-Please see the [LineageOS Wiki](https://wiki.lineageos.org/) for building instructions, by device.
+```
+How to build:
+-------------
 
+1. Set up [Android build environment](https://source.android.com/setup/initializing).
 
-Submitting patches
-------------------
-Patches are always welcome! Please submit your patches via LineageOS Gerrit!
+2. Install additional packages:
 
-Simply follow our guide on [how to submit patches](https://wiki.lineageos.org/submitting-patch-howto.html).
+```
+sudo apt-get install kpartx python-mako
+```
 
-To view the status of your and others' patches, visit [LineageOS Gerrit Code Review](https://review.lineageos.org/).
+3. Initialize repo:
 
+```
+repo init -u git://github.com/LineageOS/android.git -b lineage-15.1
+curl --create-dirs -L -o .repo/local_manifests/manifest_brcm_rpi3.xml -O -L https://raw.githubusercontent.com/lineage-rpi/android_local_manifest/lineage-15.1/manifest_brcm_rpi3.xml
+repo sync
+```
 
-Buildbot
---------
+4. Apply [patches](https://github.com/lineage-rpi/android_local_manifest/tree/lineage-15.1/patches):
 
-All supported devices are built weekly and periodically as changes are committed to ensure the source trees remain buildable.
+```
+cd path/to/project
+git am patchname.patch
+```
 
-You can view the current build statuses at [LineageOS Jenkins](https://jenkins.lineageos.org/).
+5. Compile:
 
-Builds produced weekly by the buildbot can be downloaded from [LineageOS downloads](https://download.lineageos.org/).
+```
+. build/envsetup.sh
+lunch lineage_rpi3-userdebug
+mka kernel ramdisk systemimage vendorimage
+```
+
+6. Create writable image:
+
+```
