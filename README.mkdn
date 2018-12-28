@@ -10,7 +10,7 @@ Then to sync up:
 ```
 repo sync
 ```
-```
+
 How to build:
 -------------
 
